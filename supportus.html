@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support • Living Heritage Walks</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="supportus.css" />
+    <link rel="icon" type="image/x-icon" href="1-removebg-preview.png">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo">
+        <span class="logo-mark"><img src="1-removebg-preview.png" alt="Living Heritage Walks" width="28px" height="28px"></span>
+        <span class="logo-text">Living Heritage Walks</span>
+      </div>
+      <nav class="site-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="walks.html" class="nav-link">AR Walks</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="supporting-artists.html" class="nav-link">Supporting Artists</a>
+        <a href="supportus.html" class="nav-link btn-ghost active">Support</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <div class="page-inner">
+        <header class="page-header">
+          <div>
+            <h1>Support artisans & living heritage</h1>
+            <p>
+              Every profile and AR stop includes clear “Support Artisan” actions. This page brings
+              them together in one place.
+            </p>
+          </div>
+        </header>
+
+        <!-- EMAIL SECTION 1: Stay Connected -->
+        <section class="panel email-panel">
+          <h2>Stay connected</h2>
+          <p>Leave your email so we can keep you updated on artisan stories and ways to help.</p>
+          <form class="email-form">
+            <input type="email" placeholder="Enter your email" required />
+            <button class="btn-primary" type="submit"><a href="https://discord.gg/uPtWEfKb">Join the Community</a>  </button>
+          </form>
+        </section>
+
+        <!-- EMAIL SECTION 2: Requesting Support -->
+        <section class="panel email-panel">
+          <h2>Need help or want a favour?</h2>
+          <p>
+            If you're planning a walk, collaborating on a project, or want tailored suggestions,
+            drop your email and we’ll get back to you.
+          </p>
+          <form class="email-form">
+            <input type="email" placeholder="Your email" required />
+            <button class="btn-secondary" type="submit">Contact Me</button>
+          </form>
+        </section>
+
+        <!-- EMAIL SECTION 3: Support Promise -->
+        <section class="panel email-panel">
+          <h2>Let us support you back</h2>
+          <p>
+            Tell us where you need guidance—events, craft selections, heritage tours—and we’ll share
+            curated help directly to your inbox.
+          </p>
+          <form class="email-form" id="support-detail-form">
+            <input type="email" placeholder="Email address" required />
+            <button class="btn-primary" type="submit" id="btn-get-support">Get Support</button>
+          </form>
+
+          <!-- Hidden box that appears after clicking "Get Support" -->
+          <div id="support-extra-box" class="support-extra" hidden>
+            <!-- add discord server link and also details of us like email id, phone no  -->
+            <h3>How should we reach you?</h3>
+            <p class="note">
+              Add any personal contact details or preferences here so we can follow up through the
+              channel that works best for you.
+            </p>
+            <label class="support-extra-label">
+              Your preferred contact details<br>
+              <textarea class="textarea_support"
+                rows="4"
+                class="support-extra-input"
+                placeholder="You can add a note and your details to make us know!"
+              ></textarea>
+            </label>
+            <div class="discord-server-link">
+              <h3>Discord Server Link</h3>
+                <button class="btn-primary"><a href="https://discord.gg/uPtWEfKb">Join Discord Server</a></button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand-title">Living Heritage Walks</div>
+          <p>Ways to support artisans and stay connected with the project.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <a href="index.html">Home</a>
+          <a href="walks.html">AR Walks</a>
+          <a href="about.html">About</a>
+          <a href="supporting-artists.html">Supporting Artists</a>
+          <a href="supportus.html">Support</a>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <a href="https://discord.gg/uPtWEfKb">Join Discord server</a>
+          <a href="supportus.html">Share feedback</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="owner-contact">
+            <strong>Project contact</strong>
+            <p>
+              Email:
+              <span class="owner-email">arnavnarula@dldavppcbsei.com</span>
+            </p>
+            <p class="owner-extra">
+              Phone / WhatsApp: <span>+91 9220807611 or +91 8920974301</span><br />
+              <span><a href="https://discord.gg/uPtWEfKb">Discord Server</a></span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Living Heritage Walks</span>
+        <span>Thank you for supporting craft communities.</span>
+      </div>
+    </footer>
+
+    <script type="module" src="js/app.js"></script>
+    <script type="module">
+      import { setupEmailForm } from "./js/email-submissions.js";
+
+      // Setup email form handlers
+      document.addEventListener("DOMContentLoaded", () => {
+        // Form 1: Stay Connected
+        const form1 = document.querySelector(".email-panel:first-of-type .email-form");
+        setupEmailForm(
+          form1, 
+          "stay_connected", 
+          (email) => {
+            alert(`Thank you! We've saved your email (${email}) and will keep you updated.`);
+          },
+          (error) => {
+            console.error("Failed to save email:", error);
+            alert(`Error: ${error || "Sorry, there was an error saving your email. Please try again."}`);
+          }
+        );
+
+        // Form 2: Contact Request
+        const form2 = document.querySelectorAll(".email-panel .email-form")[1];
+        setupEmailForm(
+          form2, 
+          "contact_request", 
+          (email) => {
+            alert(`Thank you! We've received your contact request (${email}) and will get back to you soon.`);
+          },
+          (error) => {
+            console.error("Failed to save contact request:", error);
+            alert(`Error: ${error || "Sorry, there was an error saving your contact request. Please try again."}`);
+          }
+        );
+
+        // Form 3: Support Request (with extra box)
+        const supportForm = document.getElementById("support-detail-form");
+        const supportBox = document.getElementById("support-extra-box");
+
+        if (supportForm && supportBox) {
+          // Setup email submission with handler that reveals the box before saving
+          setupEmailForm(
+            supportForm,
+            "support_request",
+            (email) => {
+              alert(`Thank you! We've saved your support request (${email}) and will reach out to you.`);
+            },
+            (error) => {
+              console.error("Failed to save support request:", error);
+              alert(`Error: ${error || "Sorry, there was an error saving your request. Please try again."}`);
+            },
+            () => {
+              // Reveal the extra box before submission
+              supportBox.hidden = false;
+              supportBox.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          );
+        }
+      });
+    </script>
+  </body>
+</html>
